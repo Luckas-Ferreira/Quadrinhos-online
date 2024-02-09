@@ -60,7 +60,7 @@ A camada de apresentação é responsável por interagir com o usuário, exibind
 
 ### Diagrama UML
 <h1 align="center">
-  <img alt="demonstração" title="#NextLevelWeek" src="/img-demo/DiagramaUML.png" />
+  <img alt="demonstração" title="#NextLevelWeek" src="img/Diagrama_UML.png" />
 </h1>
 
 ### Camada de Lógica
