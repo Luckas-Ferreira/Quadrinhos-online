@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { quadrinho } from '../environments/quadrinho';
 import { Quadrinho } from '../interfaces/quadrinho';
+
 @Injectable({
   providedIn: 'root'
 })

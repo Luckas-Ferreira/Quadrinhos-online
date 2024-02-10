@@ -2,14 +2,15 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Money } from '../interfaces/money';
+import { Depositar } from '../environments/depositar';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MoneyService {
-  private DepositarMoney = depositar.depositarMoney;
-  private GetMoney = depositar.getMoney;
-  private RetirarMoney = depositar.retirarMoney;
+  private DepositarMoney = Depositar.depositarMoney;
+  private GetMoney = Depositar.getMoney;
+  private RetirarMoney = Depositar.retirarMoney;
 
   constructor(private http: HttpClient) { }
 

@@ -2,14 +2,15 @@ import { Injectable } from '@angular/core';
 import { Alugar } from '../interfaces/alugar';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { Aluguel } from '../environments/aluguel';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RentQHService {
-  private GetAlugar = aluguel.getAlugar;
-  private Alugar = aluguel.alugar;
-  private LimparAlugados = aluguel.limparAlugados;
+  private GetAlugar = Aluguel.getAlugar;
+  private Alugar = Aluguel.alugar;
+  private LimparAlugados = Aluguel.limparAlugados;
 
   constructor(private http: HttpClient) { }
 
