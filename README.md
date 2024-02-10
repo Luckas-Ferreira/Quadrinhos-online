@@ -52,11 +52,13 @@ Os requisitos não funcionais do sistema são:
 
 ## Arquitetura
 
-A arquitetura do sistema é baseada no padrão MVC (Model-View-Controller), que divide o sistema em três camadas: apresentação, lógica e persistência de dados.
+A arquitetura de Cliente e Servidor é baseada na comunicação entre dois processos: o cliente, que solicita os serviços, e o servidor, que fornece os serviços. Nessa arquitetura, o cliente é responsável pela interface gráfica, e o servidor é responsável pela lógica e pela persistência de dados.
 
-### Camada de Apresentação
+O cliente será desenvolvido usando Angular, que é um framework de frontend que facilita a criação de aplicações web dinâmicas e responsivas. O servidor será desenvolvido usando Node.js, que é uma plataforma de execução de código JavaScript no lado do servidor, que permite uma comunicação rápida e eficiente com o banco de dados. O banco de dados será desenvolvido usando MySQL, que é um sistema de gerenciamento de banco de dados de código aberto, que oferece um alto desempenho, uma boa segurança e uma fácil administração.
 
-A camada de apresentação é responsável por interagir com o usuário, exibindo as informações e recebendo as entradas. Ela é composta por duas interfaces gráficas: uma para o usuário e outra para o administrador. As interfaces são desenvolvidas usando Angular, um framework de frontend que facilita a criação de aplicações web dinâmicas e responsivas.
+<h1 align="center">
+  <img alt="demonstração" title="#NextLevelWeek" src="img/Arquitetura.png" />
+</h1>
 
 ### Diagrama UML
 <h1 align="center">
