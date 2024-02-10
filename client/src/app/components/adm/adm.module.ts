@@ -12,4 +12,5 @@ import { ShowAgendadosComponent } from './show-agendados/show-agendados.componen
     AdmRoutingModule
   ]
 })
+
 export class AdmModule { }

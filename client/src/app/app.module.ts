@@ -7,12 +7,15 @@ import { PagesModule } from './components/pages/pages.module';
 import { PagesComponent } from './components/pages/pages.component';
 import { AdmModule } from './components/adm/adm.module';
 import { AdmComponent } from './components/adm/adm.component';
+import { ShowQuandrinhosComponent } from './components/pages/show-quandrinhos/show-quandrinhos.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     PagesComponent,
-    AdmComponent
+    AdmComponent,
+    ShowQuandrinhosComponent,
   ],
   imports: [
     PagesModule,

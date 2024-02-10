@@ -5,4 +5,37 @@
         </div>
       </nav>
 </header>
-<router-outlet></router-outlet>
+<section>
+  <section>
+    <div class="container justify-content-center text-white">
+      <div class="mt-4 d-flex justify-content-center rounded" style="background-color: #212529">
+        <div class="row p-2 gy-3 gy-sm-0" >
+          <div class="col-12 d-flex justify-content-center">
+            <h3>Opções</h3>
+          </div>
+          <div class="col-12 col-sm-4 d-flex justify-content-center">
+            <button style="width: 100%;" routerLink="agendados" class="btn btn-danger">Alugados</button>
+          </div>
+          <div class="col-12 col-sm-4  d-flex justify-content-center">
+            <button  style="width: 100%;" routerLink="quadrinhos" class="btn btn-danger">Quadrinhos</button>
+          </div>
+          <div class="mb-sm-0 mb-2 col-12 col-sm-4 d-flex justify-content-center">
+            <button style="width: 100%;" routerLink="adicionar" class="btn btn-danger">Adicionar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section>
+    <router-outlet></router-outlet>
+  </section>
+</section>
+<footer class="mt-4" style=" background-color: #11111182;">
+    <div class="container">
+      <footer class="py-3">
+        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+        </ul>
+        <p class="text-center text-muted">© 2024 Q-Online</p>
+      </footer>
+    </div>
+  </footer>
