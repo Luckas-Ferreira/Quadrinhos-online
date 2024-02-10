@@ -1,4 +1,4 @@
-# Quadrinhos Online
+# Q-Online
 
 ## Introdução
 
