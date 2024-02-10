@@ -8,18 +8,22 @@ import { PagesComponent } from './components/pages/pages.component';
 import { AdmModule } from './components/adm/adm.module';
 import { AdmComponent } from './components/adm/adm.component';
 import { ShowQuandrinhosComponent } from './components/pages/show-quandrinhos/show-quandrinhos.component';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DepositarComponent } from './components/pages/depositar/depositar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PagesComponent,
     AdmComponent,
+    DepositarComponent,
     ShowQuandrinhosComponent,
   ],
   imports: [
     PagesModule,
     AdmModule,
+    FormsModule,
+    ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule
   ],
