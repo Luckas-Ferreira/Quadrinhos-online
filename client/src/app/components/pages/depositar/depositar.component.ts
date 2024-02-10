@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-depositar',
@@ -12,10 +12,17 @@ export class DepositarComponent implements OnInit{
 
   constructor(){}
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    this.formDeposito = new FormGroup({
+      valor: new FormControl('', [Validators.required])
+    })
+  }
+
+  get valor() {
+    return this.formDeposito.get('valor')!;
   }
   depositar(){
     if(this.formDeposito.get('valor')!.valid){
+      window.location.href = 'inicio';
       // this.Depositar.depositarMoney({valor: this.formDeposito.get('valor')!.value}).subscribe((response: Depositar) => {
       //   if(response.ok){
       //     window.location.href = 'inicio';
