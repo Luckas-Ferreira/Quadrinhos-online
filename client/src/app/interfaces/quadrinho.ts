@@ -1,6 +1,8 @@
 export interface Quadrinho {
     ok: boolean;
-    quantDispo: number;
+    quantidade: number;
+    quantPaginas: number
+    tipo: number;
     valor: number;
     nome: string;
     foto: string;
