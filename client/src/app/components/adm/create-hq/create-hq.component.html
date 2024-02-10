@@ -1,0 +1,100 @@
+<section class="container-fluid mt-5 background">
+    <div class="m-2 m-sm-5">
+       <div class="bg-dark p-2 rounded text-white"> 
+        <form class="needs-validation" novalidate id="bookingForm" (ngSubmit)="createQ()" #formDir="ngForm" [formGroup]="formCreateLanche" enctype="multipart/form-data">
+            <h3 class="text-center">Adicionar novo <span class="text-danger rounded" style="background-color: rgb(206, 207, 207);"><strong>Quadrinho</strong></span></h3>
+            <div class="row  gy-4 p-3">
+            <div class="col-12 col-sm-6">
+                <form id="bookingForm" #formDir="ngForm" [formGroup]="formPhotos" enctype="multipart/form-data">
+                    <label class="form-label mb-0" for="fotoQuadrinho"><span class="fw-bold text-danger">*</span> Anexe a capa da história em quadrinhos</label>
+                    <input class="form-control" type="file" accept="image/png, image/jpeg,.jpg" image-cropper-input formControlName="fotoQuadrinho"
+                        id="file-input" formControlName="fotoQuadrinho" (change)="fileChangeEvent($event)" [ngClass]="{'is-invalid': fotoQuadrinho.invalid && formDir.submitted, 'is-valid': fotoQuadrinho!.valid}"/>
+                    <div *ngIf="fotoQuadrinho.invalid && formDir.submitted" class="invalid-feedback" style="display: block;">
+                    <p *ngIf="fotoQuadrinho.errors?.['required']">A capa é obrigatória</p>
+                  </div>
+                  </form>
+            </div>
+            <div class="col-12 col-sm-6">
+                <div class="form-group">
+                    <label for="nome"><span class="fw-bold text-danger">*</span> Nome</label>
+                    <input type="text" formControlName="nome" class="form-control" [ngClass]="{'is-invalid': nome.invalid && formDir.submitted, 'is-valid': nome.valid}" id="exampleFormControlInput1" placeholder="Nome">
+                </div>
+                <div *ngIf="nome.invalid && formDir.submitted" class="invalid-feedback" style="display: block;">
+                    <p *ngIf="nome.errors?.['required']">
+                      O nome do lanche é obrigatório
+                    </p>
+                  </div>
+            </div>
+            <div class="col-12 col-sm-6">
+                <div class="form-group">
+                    <label for="quantidade"><span class="fw-bold text-danger">*</span> Quantidade disponível</label>
+                    <input type="number" formControlName="quantidade" class="form-control" [ngClass]="{'is-invalid': quantidade.invalid && formDir.submitted, 'is-valid': quantidade.valid}" id="exampleFormControlInput1" placeholder="Quantidade disponível">
+                </div>
+                <div *ngIf="quantidade.invalid && formDir.submitted" class="invalid-feedback" style="display: block;">
+                    <p *ngIf="quantidade.errors?.['required']">
+                      A quantidade disponível é obrigatória
+                    </p>
+                  </div>
+            </div>
+            <div class="col-12 col-sm-6">
+                <div class="form-group">
+                    <label for="valor"><span class="fw-bold text-danger">*</span> Valor</label>
+                    <input type="number" formControlName="valor" class="form-control" [ngClass]="{'is-invalid': valor.invalid && formDir.submitted, 'is-valid': valor.valid}" id="exampleFormControlInput1" placeholder="Valor por unidade">
+                </div>
+                <div *ngIf="valor.invalid && formDir.submitted" class="invalid-feedback" style="display: block;">
+                    <p *ngIf="valor.errors?.['required']">
+                      O valor é obrigatório
+                    </p>
+                  </div>
+            </div>
+            <div class="col-12 col-sm-6">
+                <div class="form-group">
+                    <label for="quantPaginas"><span class="fw-bold text-danger">*</span> Quantidade de páginas</label>
+                    <input type="number" formControlName="quantPaginas" class="form-control" [ngClass]="{'is-invalid': quantPaginas.invalid && formDir.submitted, 'is-valid': quantPaginas.valid}" id="exampleFormControlInput1" placeholder="Quantidade todal de páginas">
+                </div>
+                <div *ngIf="quantPaginas.invalid && formDir.submitted" class="invalid-feedback" style="display: block;">
+                    <p *ngIf="quantPaginas.errors?.['required']">
+                      A quantidade de páginas é obrigatória
+                    </p>
+                  </div>
+            </div>
+            <div class="col-12 col-sm-6">
+                <div class="form-group">
+                    <label for="tipo"><span class="fw-bold text-danger">*</span> Tipo</label>
+                    <select class="form-select" [ngClass]="{'is-invalid': tipo.invalid && formDir.submitted, 'is-valid': tipo.valid}" formControlName="tipo" aria-label="Default select example">
+                        <option disabled selected >Tipo de quadrinho</option>
+                        <option value="1">HQ</option>
+                        <option value="2">Mangá</option>
+                      </select>
+                </div>
+                <div *ngIf="tipo.invalid && formDir.submitted" class="invalid-feedback" style="display: block;">
+                    <p *ngIf="tipo.errors?.['required']">
+                     O tipo é obrigatório
+                    </p>
+                  </div>
+            </div>
+            <div class="col-12">
+                <div class="form-group">
+                    <label for="descricao"><span class="fw-bold text-danger">*</span> Descrição</label>
+                    <textarea class="form-control" id="descricao" [ngClass]="{'is-invalid': descricao.invalid && formDir.submitted, 'is-valid': descricao.valid}"  formControlName="descricao" placeholder="Descrição da história" rows="3"></textarea>
+                </div>
+                <div *ngIf="descricao.invalid && formDir.submitted" class="invalid-feedback" style="display: block;">
+                    <p *ngIf="descricao.errors?.['required']">
+                      A descricao é obrigatória
+                    </p>
+                  </div>
+            </div>
+            <div class="col-12 text-center text-sm-end">
+                <button *ngIf="spinner; else noSpinner" type="submit" id="remover" class="btn btn-danger" style="min-width: 20%;">Adicionar</button>
+                <ng-template #noSpinner>
+                  <button class="btn btn-danger" type="button" style="min-width: 20%;" disabled>
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Aguarde...
+                  </button>
+                </ng-template>
+            </div>
+        </div>
+        </form>
+       </div>
+    </div>
+</section>

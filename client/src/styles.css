@@ -7,14 +7,26 @@
     box-sizing: border-box;
   }
 
-.background{
-  background-color: #0a0a0a;
-}
+  .Header {
+    height: 66px;
+  }
+  
+  .Footer {
+    height: 105px;
+  }
+  
+  .background{
+    background-color: #0a0a0a;
+    min-height: calc(100vh - 66px - 105px); 
+    }
 
 .text-muted{
   color: white !important;
 }
 
+.text-danger{
+  color: #ac0000 !important;
+}
 .btn.btn-danger{
   --bs-btn-color: #fff;
   --bs-btn-bg: #ac0000;
