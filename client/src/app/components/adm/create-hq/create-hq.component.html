@@ -2,11 +2,11 @@
     <div class="m-2 m-sm-5">
        <div class="bg-dark p-2 rounded text-white"> 
         <form class="needs-validation" novalidate id="bookingForm" (ngSubmit)="createQ()" #formDir="ngForm" [formGroup]="formCreateLanche" enctype="multipart/form-data">
-            <h3 class="text-center">Adicionar novo <span class="text-danger rounded" style="background-color: rgb(206, 207, 207);"><strong>Quadrinho</strong></span></h3>
+            <h3 class="text-center mt-2">Adicionar novo <span class="text-danger rounded" style="background-color: rgb(206, 207, 207);"><strong>Quadrinho</strong></span></h3>
             <div class="row  gy-4 p-3">
             <div class="col-12 col-sm-6">
                 <form id="bookingForm" #formDir="ngForm" [formGroup]="formPhotos" enctype="multipart/form-data">
-                    <label class="form-label mb-0" for="fotoQuadrinho"><span class="fw-bold text-danger">*</span> Anexe a capa da história em quadrinhos</label>
+                    <label class="form-label mb-0" for="fotoQuadrinho"><span class="fw-bold text-danger">*</span> Capa da história em quadrinhos</label>
                     <input class="form-control" type="file" accept="image/png, image/jpeg,.jpg" image-cropper-input formControlName="fotoQuadrinho"
                         id="file-input" formControlName="fotoQuadrinho" (change)="fileChangeEvent($event)" [ngClass]="{'is-invalid': fotoQuadrinho.invalid && formDir.submitted, 'is-valid': fotoQuadrinho!.valid}"/>
                     <div *ngIf="fotoQuadrinho.invalid && formDir.submitted" class="invalid-feedback" style="display: block;">
@@ -84,8 +84,10 @@
                     </p>
                   </div>
             </div>
-            <div class="col-12 text-center text-sm-end">
-                <button *ngIf="spinner; else noSpinner" type="submit" id="remover" class="btn btn-danger" style="min-width: 20%;">Adicionar</button>
+            <div class="col-12">
+                <div class="d-grid d-sm-flex gap-2 justify-content-sm-end">
+                  <button *ngIf="spinner; else noSpinner" type="submit" id="remover" class="btn btn-danger" style="min-width: 20%;">Adicionar</button>
+                </div>
                 <ng-template #noSpinner>
                   <button class="btn btn-danger" type="button" style="min-width: 20%;" disabled>
                     <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
