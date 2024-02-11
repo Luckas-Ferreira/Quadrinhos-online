@@ -21,5 +21,7 @@ CREATE TABLE alugar_quadrinho(
 CREATE TABLE usuario(
     usuario_id INT AUTO_INCREMENT,
     valor INT,
+    nome VARCHAR(50),
+    senha VARCHAR(11),
     PRIMARY KEY (usuario_id)
 );
