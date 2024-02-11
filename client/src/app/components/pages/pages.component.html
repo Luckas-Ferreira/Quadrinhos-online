@@ -4,16 +4,20 @@
             <a href="/inicio">
               <img src="\assets\Q-online.png" alt="logo" height="50">
             </a>
-            <div class="dropdown dropstart">
-                <button style="background-color: transparent; border: none;" class="dropdown-toggle text-white" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fa-solid fa-user fa-xl"></i>
-                </button>
-                <ul class="dropdown-menu dropdown-menu-dark">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
-                </ul>
+            <div class="d-flex align-items-center">
+              <div class="text-white pe-4">
+                <p><strong>R${{dataMoney}}</strong></p>
               </div>
+              <div class="dropdown ">
+                  <button style="background-color: transparent; border: none;" class="dropdown-toggle text-white" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class="fa-solid fa-user fa-xl"></i>
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark">
+                    <li><a (click)="sacarValor()" class="dropdown-item">Sacar valor</a></li>
+                  </ul>
+                </div>
+            </div>
+            
         </div>
       </nav>
 </header>
@@ -30,3 +34,10 @@
     </footer>
   </div>
 </footer>
+
+<div class="alert alert-success d-none fixed-bottom text-center" role="alert" id="true">
+  <p class="mb-0"><strong>Valor retirado com sucesso!</strong></p>
+</div>
+<div class="alert alert-success d-none fixed-bottom text-center" role="alert" id="false">
+  <p class="mb-0"><strong>Erro ao retirar saldo</strong></p>
+</div>

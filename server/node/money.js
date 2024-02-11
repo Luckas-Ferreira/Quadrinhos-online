@@ -34,13 +34,17 @@ function depositarValor(req, res) {
 
 function getValor(req, res) {
     const sql = `SELECT * FROM usuario WHERE usuario_id = 2`;
-    
     open.query(sql, (err, result) => {
-        if (err) {
-            res.send({ok: false, message: 'Erro ao retornar saldo'});
-        } else {
-            res.send({ok: true, valor: result[0].valor});
+        if(result[0].valor != 0){
+            if (err) {
+                res.send({ok: false, message: 'Erro ao retornar saldo'});
+            } else {
+                res.send({ok: true, valor: result[0].valor});
+            }
+        }else{
+            res.send({ok: false, message: 'Saldo insuficiente'});
         }
+        
     });
 }
 
@@ -50,7 +54,7 @@ function sacarValor(req, res) {
         if(err) {
             res.send({ok: false, message: 'Erro ao sacar'});
         } else {
-            res.send({ok: true});
+            res.send({ok: true, valor: 0});
         }
     });
 }

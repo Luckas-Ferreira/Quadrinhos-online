@@ -15,12 +15,12 @@ export class MoneyService {
   constructor(private http: HttpClient) { }
 
   depositarMoney(object: object): Observable<Money>{
-    return this.http.post<Money>(this.DepositarMoney, object)
+    return this.http.put<Money>(this.DepositarMoney, object)
   }
-  retirarMoney(object: object): Observable<Money>{
-    return this.http.post<Money>(this.RetirarMoney, object)
+  retirarMoney(): Observable<Money>{
+    return this.http.put<Money>(this.RetirarMoney, [])
   }
   getMoney(): Observable<Money>{
-    return this.http.post<Money>(this.GetMoney, [])
+    return this.http.get<Money>(this.GetMoney)
   }
 }

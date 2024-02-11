@@ -1,5 +1,5 @@
 export const Depositar = {
-    depositarMoney: 'localhost:10/depositarMoney',
-    getMoney: 'localhost:10/getMoney',
-    retirarMoney: 'localhost:10/retirarMoney'
+    depositarMoney: 'http://localhost:8081/depositarValor',
+    getMoney: 'http://localhost:8081/getValor',
+    retirarMoney: 'http://localhost:8081/sacarValor'
 }

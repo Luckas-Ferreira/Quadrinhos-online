@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Money } from 'src/app/interfaces/money';
+import { MoneyService } from 'src/app/services/money.service';
 
 @Component({
   selector: 'app-depositar',
@@ -10,7 +12,7 @@ export class DepositarComponent implements OnInit{
   formDeposito!: FormGroup;
   fraseAlert: string = '';
 
-  constructor(){}
+  constructor(private Depositar: MoneyService){}
   ngOnInit(): void {
     this.formDeposito = new FormGroup({
       valor: new FormControl('', [Validators.required])
@@ -22,19 +24,18 @@ export class DepositarComponent implements OnInit{
   }
   depositar(){
     if(this.formDeposito.get('valor')!.valid){
-      window.location.href = 'inicio';
-      // this.Depositar.depositarMoney({valor: this.formDeposito.get('valor')!.value}).subscribe((response: Depositar) => {
-      //   if(response.ok){
-      //     window.location.href = 'inicio';
-      //   }else{
-      //     this.fraseAlert = response.message!;
-      //     const alert = document.getElementById('error');
-      //     alert!.classList.remove('d-none');
-      //     setTimeout(() => {
-      //       alert!.classList.add('d-none');
-      //     }, 7000);
-      //   }
-      // })
+       this.Depositar.depositarMoney({valor: this.formDeposito.get('valor')!.value}).subscribe((response: Money) => {
+         if(response.ok){
+           window.location.href = 'inicio';
+         }else{
+          this.fraseAlert = response.message;
+           const alert = document.getElementById('error');
+          alert!.classList.remove('d-none');
+         setTimeout(() => {
+          alert!.classList.add('d-none');
+       }, 7000);
+       }
+   })
     }
   }
 }
