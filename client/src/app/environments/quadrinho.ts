@@ -1,6 +1,6 @@
 export const quadrinho = {
-    getQuadrinho: 'localhost:10/getQuadrinho',
-    getQuadrinhos: 'localhost:10/getQuadrinhos',
-    createQuadrinho: 'localhost:10/createQuadrinho',
-    deleteQuadrinho: 'localhost:10/deleteQuadrinho',
+    getQuadrinho: 'http://localhost:8081/getQuadrinho',
+    getQuadrinhos: 'http://localhost:8081/getQuadrinhos',
+    createQuadrinho: 'http://localhost:8081/createQuadrinho',
+    deleteQuadrinho: 'http://localhost:8081/deleteQuadrinho',
 }

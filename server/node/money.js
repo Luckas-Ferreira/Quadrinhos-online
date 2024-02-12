@@ -10,10 +10,6 @@ const open = mysql.createConnection({
     password: 'Sou1tera'
 });
 
-open.connect((err)=>{
-    if(err) throw err;
-    console.log('Conectado ao Banco de Dados');
-})
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 

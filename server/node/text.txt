@@ -1,0 +1,8 @@
+
+        '${req.body.nome}',
+        '${req.body.quantDispo}',
+        '${req.body.descricao}',
+        '${req.body.tipo}',
+        '${req.body.quantPaginas}',
+        '${req.body.foto}'
+     
