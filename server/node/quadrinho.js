@@ -2,6 +2,7 @@ const express = require('express');
 const mysql = require('mysql2');
 const bodyParser = require('body-parser');
 const app = express();
+const fs = require('fs');
 
 const open = mysql.createConnection({
     host: 'localhost',
@@ -14,16 +15,20 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
 function createQuadrinho(req, res){
-    const camposObrigatorios = ['nome', 'valor', 'quantDispo', 'descricao', 'tipo', 'quantPaginas', 'foto'];
+    const camposObrigatorios = ['nome', 'valor', 'quantDispo', 'descricao', 'tipo', 'quantPaginas'];
     const camposFaltando = [];
-    console.log(req.file.path);
     camposObrigatorios.forEach(field => {
         if (!req.body[field]) {
             camposFaltando.push(field);
         }
     });
 
+    if(req.file == undefined){
+        camposFaltando.push('foto');
+    }
+
     if (camposFaltando.length > 0) {
+        fs.unlinkSync(req.file.path);
         return res.status(400).json({ ok: false, camposObrigatorios: `${camposFaltando.join(', ')}` });
     }else{
         const sql = `INSERT INTO quadrinho(nome, valor, quantDispo, descricao, tipo, quantPaginas, foto) VALUES(?, ?, ?, ?, ?, ?, ?);`
