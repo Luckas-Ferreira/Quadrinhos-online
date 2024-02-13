@@ -15,8 +15,8 @@ export class QuadrinhoService {
 
   constructor(private http: HttpClient) { }
 
-  getQuadrinho(id: number): Observable<Quadrinho>{
-    return this.http.post<Quadrinho>(this.GetQuadrinho, id)
+  getQuadrinho(object: object): Observable<Quadrinho>{
+    return this.http.post<Quadrinho>(this.GetQuadrinho, object)
   }
   getQuadrinhos(): Observable<Quadrinho>{
     return this.http.get<Quadrinho>(this.GetQuadrinhos)
