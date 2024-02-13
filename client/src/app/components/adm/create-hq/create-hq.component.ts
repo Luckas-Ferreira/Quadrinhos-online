@@ -87,12 +87,14 @@ export class CreateHQComponent implements OnInit{
       this.formData.append('foto', this.file, this.formPhotos.get('foto')!.value.nome);
       this.quadrinho.createQuadrinho(this.formData).subscribe((Response: Quadrinho) => {
         if(Response.ok){
+          this.formData = new FormData();
+          this.formCreateLanche.reset();
+          this.formPhotos.reset();
           this.fraseAlert = 'Quadrinho adicionado com sucesso'!;
           const alert = document.getElementById('true');
           alert!.classList.remove('d-none');
           setTimeout(() => {
-            alert!.classList.add('d-none');
-          }, 4000);
+            alert!.classList.add('d-none')}, 2000);
         }else{
           this.fraseAlert = Response.message;
           const alert = document.getElementById('false');

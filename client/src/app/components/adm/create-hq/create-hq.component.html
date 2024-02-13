@@ -7,7 +7,7 @@
             <div class="col-12 col-sm-6">
                 <form id="bookingForm" #formDir="ngForm" [formGroup]="formPhotos" enctype="multipart/form-data">
                     <label class="form-label mb-0" for="foto"><span class="fw-bold text-danger">*</span> Capa da história em quadrinhos</label>
-                    <input class="form-control" type="file" accept="image/png, image/jpeg,.jpg" image-cropper-input formControlName="foto"
+                    <input class="form-control" type="file"  accept="image/png, image/jpeg,.jpg" image-cropper-input formControlName="foto"
                         id="file-input" name="foto" (change)="fileChangeEvent($event)" [ngClass]="{'is-invalid': foto.invalid && formDir.submitted, 'is-valid': foto!.valid}"/>
                     <div *ngIf="foto.invalid && formDir.submitted" class="invalid-feedback" style="display: block;">
                     <p *ngIf="foto.errors?.['required']">A capa é obrigatória</p>
@@ -63,8 +63,8 @@
                     <label for="tipo"><span class="fw-bold text-danger">*</span> Tipo</label>
                     <select class="form-select" [ngClass]="{'is-invalid': tipo.invalid && formDir.submitted, 'is-valid': tipo.valid}" formControlName="tipo" aria-label="Default select example">
                         <option disabled selected >Tipo de quadrinho</option>
-                        <option value="1">HQ</option>
-                        <option value="2">Mangá</option>
+                        <option value="HQ">HQ</option>
+                        <option value="Mangá">Mangá</option>
                       </select>
                 </div>
                 <div *ngIf="tipo.invalid && formDir.submitted" class="invalid-feedback" style="display: block;">

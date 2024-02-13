@@ -20,6 +20,7 @@ const upload = multer({ storage: storage });
 app.use(cors());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
+app.use('/uploads', express.static('uploads'))
 
 app.put('/depositarValor', moneyRoutes.depositarValor);
 app.get('/getValor', moneyRoutes.getValor);
