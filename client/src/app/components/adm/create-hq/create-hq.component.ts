@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Quadrinho } from 'src/app/interfaces/quadrinho';
+import { QuadrinhoService } from 'src/app/services/quadrinho.service';
 
 @Component({
   selector: 'app-create-hq',
@@ -12,25 +14,26 @@ export class CreateHQComponent implements OnInit{
   formCreateLanche!: FormGroup
   formPhotos!: FormGroup
   formData = new FormData();
+  fraseAlert: string = '';
 
-  constructor(){}
+  constructor(private quadrinho: QuadrinhoService){}
   
   ngOnInit(): void {
     this.formPhotos = new FormGroup({
-      fotoQuadrinho: new FormControl(null, [Validators.required]),
+      foto: new FormControl(null, [Validators.required]),
     }),
     this.formCreateLanche = new FormGroup({
       nome: new FormControl('', [Validators.required]),
       descricao: new FormControl('', [Validators.required]),
       valor: new FormControl('', [Validators.required]),
       quantPaginas: new FormControl('', [Validators.required]),
-      quantidade: new FormControl('', [Validators.required]),
+      quantDispo: new FormControl('', [Validators.required]),
       tipo: new FormControl('', [Validators.required])
     })
   }
 
-  get fotoQuadrinho() {
-    return this.formPhotos.get('fotoQuadrinho')!;
+  get foto() {
+    return this.formPhotos.get('foto')!;
   }
   get nome() {
     return this.formCreateLanche.get('nome')!;
@@ -41,8 +44,8 @@ export class CreateHQComponent implements OnInit{
   get valor() {
     return this.formCreateLanche.get('valor')!;
   }
-  get quantidade() {
-    return this.formCreateLanche.get('quantidade')!;
+  get quantDispo() {
+    return this.formCreateLanche.get('quantDispo')!;
   }
   get quantPaginas(){
     return this.formCreateLanche.get('quantPaginas')!;
@@ -54,12 +57,12 @@ export class CreateHQComponent implements OnInit{
   validateRegister() {
     if (
       this.formCreateLanche.get('nome')!.invalid ||
-      this.formPhotos.get('fotoQuadrinho')!.invalid ||
+      this.formPhotos.get('foto')!.invalid ||
       this.formCreateLanche.get('descricao')!.invalid ||
       this.formCreateLanche.get('valor')!.invalid ||
       this.formCreateLanche.get('quantPaginas')!.invalid ||
       this.formCreateLanche.get('tipo')!.invalid ||
-      this.formCreateLanche.get('quantidade')!.invalid
+      this.formCreateLanche.get('quantDispo')!.invalid
     ) {
       return false;
     }
@@ -67,43 +70,39 @@ export class CreateHQComponent implements OnInit{
     this.formData.append('descricao', this.formCreateLanche.get('descricao')!.value);
     this.formData.append('valor', this.formCreateLanche.get('valor')!.value);
     this.formData.append('quantPaginas', this.formCreateLanche.get('quantPaginas')!.value);
-    this.formData.append('quantDispo', this.formCreateLanche.get('quantidade')!.value);
-    this.formData.append('quantDispo', this.formCreateLanche.get('tipo')!.value);
+    this.formData.append('quantDispo', this.formCreateLanche.get('quantDispo')!.value);
+    this.formData.append('tipo', this.formCreateLanche.get('tipo')!.value);
     return true;
   }
 
   fileChangeEvent(event: any): void {
     this.file = event.target.files[0];
-    this.formData.append('foto', this.file, this.formPhotos.get('fotoQuadrinho')!.value.nome);
+    this.formData.append('foto', this.file, this.formPhotos.get('foto')!.value.nome);
   }
 
   createQ(){
     this.formData = new FormData();
     if(this.validateRegister()){
-      console.log('deu certo');
-      
-      // this.spinner = false;
-      // this.formData.append('foto', this.file, this.formPhotos.get('fotoQuadrinho')!.value.nome);
-      // this.lanche.createLanche(this.formData).subscribe((Response: Lanche) => {
-      //   if(Response.ok){
-      //     this.fraseAlert = 'Lanche adicionado com sucesso'!;
-      //     const alert = document.getElementById('Success');
-      //     alert!.classList.remove('d-none');
-      //     setTimeout(() => {
-      //       alert!.classList.add('d-none');
-      //     window.location.reload();
-      //     }, 2000);
-      //   }else{
-      //     this.fraseAlert = Response.message!;
-      //     const alert = document.getElementById('error');
-      //     alert!.classList.remove('d-none');
-      //     setTimeout(() => {
-      //       alert!.classList.add('d-none');
-      //     }, 4000);
-      //   }
-      //   this.spinner = true;
-      //   this.modalRef.hide();
-      // })
+      this.spinner = false;
+      this.formData.append('foto', this.file, this.formPhotos.get('foto')!.value.nome);
+      this.quadrinho.createQuadrinho(this.formData).subscribe((Response: Quadrinho) => {
+        if(Response.ok){
+          this.fraseAlert = 'Quadrinho adicionado com sucesso'!;
+          const alert = document.getElementById('true');
+          alert!.classList.remove('d-none');
+          setTimeout(() => {
+            alert!.classList.add('d-none');
+          }, 4000);
+        }else{
+          this.fraseAlert = Response.message;
+          const alert = document.getElementById('false');
+          alert!.classList.remove('d-none');
+          setTimeout(() => {
+            alert!.classList.add('d-none');
+          }, 4000);
+        }
+        this.spinner = true;
+      })
     }
     
   }

@@ -14,15 +14,31 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
 function createQuadrinho(req, res){
-     const sql = `INSERT INTO quadrinho(nome, valor, quantDispo, descricao, tipo, quantPaginas, foto) VALUES('${req.body.nome}', ${req.body.valor}, '${req.body.quantDispo}', '${req.body.descricao}', '${req.body.tipo}', '${req.body.quantPaginas}', '${req.body.foto}');`
-     open.query(sql, (err) => {
-        if(err){
-            console.log(err);
-            res.send({ok: false, message: 'Erro ao inserir dados'})
-        }else{
-            res.send({ok: true})
+    const camposObrigatorios = ['nome', 'valor', 'quantDispo', 'descricao', 'tipo', 'quantPaginas', 'foto'];
+    const camposFaltando = [];
+    console.log(req.file.path);
+    camposObrigatorios.forEach(field => {
+        if (!req.body[field]) {
+            camposFaltando.push(field);
         }
-     })
+    });
+
+    if (camposFaltando.length > 0) {
+        return res.status(400).json({ ok: false, camposObrigatorios: `${camposFaltando.join(', ')}` });
+    }else{
+        const sql = `INSERT INTO quadrinho(nome, valor, quantDispo, descricao, tipo, quantPaginas, foto) VALUES(?, ?, ?, ?, ?, ?, ?);`
+        const values = [req.body.nome, req.body.valor, req.body.quantDispo, req.body.descricao, req.body.tipo, req.body.quantPaginas, req.file.path];
+         open.query(sql, values, (err, result) => {
+            console.log(result);
+            if(err){
+                console.log(err);
+                res.send({ok: false, message: 'Erro ao inserir dados'})
+            }else{
+                res.send({ok: true})
+            }
+         })
+    }
+    
 }
 
 function getQuadrinhos(req, res){
