@@ -12,8 +12,14 @@
                         <img src="{{baseUrl + quadrinho.foto}}" alt="manga" class="img-fluid">
                     </div>
                                        
-                    <div class="d-flex align-item-center j ustify-content-between text-white rounded-bottom" style="background-color: #111;">
+                    <div class="d-flex align-item-center justify-content-between text-white rounded-bottom" style="background-color: #111;">
                         <p class="m-1 ps-2">{{quadrinho.nome}}</p>
+                        <div *ngIf="Router === '/admin/quadrinhos'">
+                            <a (click)="deleteQuadrinho(quadrinho.quadrinho_id)">
+                                <i class="fa-solid fa-trash pe-2 m-1 mt-2" style="color: #ee1f1f"></i>
+                            </a>
+                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -24,3 +30,11 @@
         
     </div>
 </section>
+
+
+<div class="alert alert-success d-none fixed-bottom text-center" role="alert" id="true">
+    <p class="mb-0"><strong>{{fraseAlert}}</strong></p>
+  </div>
+  <div class="alert alert-success d-none fixed-bottom text-center" role="alert" id="false">
+    <p class="mb-0"><strong>{{fraseAlert}}</strong></p>
+  </div>

@@ -7,5 +7,6 @@ export interface Quadrinho {
     valor: number;
     nome: string;
     foto: string;
+    quadrinho_id: number;
     quadrinhos: []
 }

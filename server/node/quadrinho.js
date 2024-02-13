@@ -71,7 +71,7 @@ app.use(bodyParser.json());
 
 
 function getQuadrinhos(req, res){
-    const sql = 'SELECT nome, foto, tipo, valor FROM quadrinho;'
+    const sql = 'SELECT nome, foto, tipo, valor, quadrinho_id FROM quadrinho;'
     open.query(sql, (err, result) => {
         if (err){
             res.send({ok: false, message: 'Erro ao retornar quadrinhos'})
