@@ -28,7 +28,7 @@
             <div class="col-12 col-sm-6">
                 <div class="form-group">
                     <label for="quantDispo"><span class="fw-bold text-danger">*</span> quantDispo disponível</label>
-                    <input type="number" formControlName="quantDispo" class="form-control" [ngClass]="{'is-invalid': quantDispo.invalid && formDir.submitted, 'is-valid': quantDispo.valid}" id="exampleFormControlInput1" placeholder="quantDispo disponível">
+                    <input type="number" formControlName="quantDispo" class="form-control" [ngClass]="{'is-invalid': quantDispo.invalid && formDir.submitted, 'is-valid': quantDispo.valid}" id="exampleFormControlInput1" placeholder="quantidade disponível">
                 </div>
                 <div *ngIf="quantDispo.invalid && formDir.submitted" class="invalid-feedback" style="display: block;">
                     <p *ngIf="quantDispo.errors?.['required']">
