@@ -39,7 +39,6 @@ app.use(bodyParser.json());
             }
             return res.status(400).json({ ok: false, camposObrigatorios: `${camposFaltando.join(', ')}` });
         }else{
-            // Criar um novo caminho de arquivo para a imagem processada
             const newFilePath = path.join(path.dirname(req.file.path), 'processed-' + path.basename(req.file.path));
     
             sharp(req.file.path)
@@ -48,8 +47,6 @@ app.use(bodyParser.json());
                     if (err) {
                         return res.status(500).json({ ok: false, message: 'Erro ao processar a imagem' });
                     }
-    
-                    // Substituir o arquivo original pela imagem processada
                     fs.rename(newFilePath, req.file.path, (err) => {
                         if (err) {
                             return res.status(500).json({ ok: false, message: 'Erro ao salvar a imagem' });
