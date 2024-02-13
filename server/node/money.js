@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 
 function depositarValor(req, res) {
     if(req.body.valor !== 0){
-        const sql = `UPDATE usuario SET valor = ${req.body.valor} WHERE usuario_id = 2;`;
+        const sql = `UPDATE usuario SET valor = ${req.body.valor} WHERE usuario_id = 5;`;
         open.query(sql, (err) => {
             if (err) {
                 res.send({ok: false, message: 'Erro ao depositar'});
@@ -29,9 +29,9 @@ function depositarValor(req, res) {
 }
 
 function getValor(req, res) {
-    const sql = `SELECT * FROM usuario WHERE usuario_id = 2`;
+    const sql = `SELECT * FROM usuario WHERE usuario_id = 5;`;
     open.query(sql, (err, result) => {
-        if(result[0].valor != 0){
+        if(result[0].valor !== 0){
             if (err) {
                 res.send({ok: false, message: 'Erro ao retornar saldo'});
             } else {
@@ -45,7 +45,7 @@ function getValor(req, res) {
 }
 
 function sacarValor(req, res) {
-    const sql = `UPDATE usuario SET valor = 0 WHERE usuario_id = 2`;
+    const sql = `UPDATE usuario SET valor = 0 WHERE usuario_id = 5`;
     open.query(sql, (err) => {
         if(err) {
             res.send({ok: false, message: 'Erro ao sacar'});

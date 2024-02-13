@@ -19,7 +19,7 @@ export class QuadrinhoService {
     return this.http.post<Quadrinho>(this.GetQuadrinho, id)
   }
   getQuadrinhos(): Observable<Quadrinho>{
-    return this.http.post<Quadrinho>(this.GetQuadrinhos, [])
+    return this.http.get<Quadrinho>(this.GetQuadrinhos)
   }
   createQuadrinho(data: FormData): Observable<Quadrinho>{
     return this.http.post<Quadrinho>(this.CreateQuadrinho, data)

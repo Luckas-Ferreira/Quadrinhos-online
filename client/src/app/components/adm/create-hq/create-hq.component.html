@@ -6,11 +6,11 @@
             <div class="row  gy-4 p-3">
             <div class="col-12 col-sm-6">
                 <form id="bookingForm" #formDir="ngForm" [formGroup]="formPhotos" enctype="multipart/form-data">
-                    <label class="form-label mb-0" for="fotoQuadrinho"><span class="fw-bold text-danger">*</span> Capa da história em quadrinhos</label>
-                    <input class="form-control" type="file" accept="image/png, image/jpeg,.jpg" image-cropper-input formControlName="fotoQuadrinho"
-                        id="file-input" formControlName="fotoQuadrinho" (change)="fileChangeEvent($event)" [ngClass]="{'is-invalid': fotoQuadrinho.invalid && formDir.submitted, 'is-valid': fotoQuadrinho!.valid}"/>
-                    <div *ngIf="fotoQuadrinho.invalid && formDir.submitted" class="invalid-feedback" style="display: block;">
-                    <p *ngIf="fotoQuadrinho.errors?.['required']">A capa é obrigatória</p>
+                    <label class="form-label mb-0" for="foto"><span class="fw-bold text-danger">*</span> Capa da história em quadrinhos</label>
+                    <input class="form-control" type="file"  accept="image/png, image/jpeg,.jpg" image-cropper-input formControlName="foto"
+                        id="file-input" name="foto" (change)="fileChangeEvent($event)" [ngClass]="{'is-invalid': foto.invalid && formDir.submitted, 'is-valid': foto!.valid}"/>
+                    <div *ngIf="foto.invalid && formDir.submitted" class="invalid-feedback" style="display: block;">
+                    <p *ngIf="foto.errors?.['required']">A capa é obrigatória</p>
                   </div>
                   </form>
             </div>
@@ -27,11 +27,11 @@
             </div>
             <div class="col-12 col-sm-6">
                 <div class="form-group">
-                    <label for="quantidade"><span class="fw-bold text-danger">*</span> Quantidade disponível</label>
-                    <input type="number" formControlName="quantidade" class="form-control" [ngClass]="{'is-invalid': quantidade.invalid && formDir.submitted, 'is-valid': quantidade.valid}" id="exampleFormControlInput1" placeholder="Quantidade disponível">
+                    <label for="quantDispo"><span class="fw-bold text-danger">*</span> quantDispo disponível</label>
+                    <input type="number" formControlName="quantDispo" class="form-control" [ngClass]="{'is-invalid': quantDispo.invalid && formDir.submitted, 'is-valid': quantDispo.valid}" id="exampleFormControlInput1" placeholder="quantidade disponível">
                 </div>
-                <div *ngIf="quantidade.invalid && formDir.submitted" class="invalid-feedback" style="display: block;">
-                    <p *ngIf="quantidade.errors?.['required']">
+                <div *ngIf="quantDispo.invalid && formDir.submitted" class="invalid-feedback" style="display: block;">
+                    <p *ngIf="quantDispo.errors?.['required']">
                       A quantidade disponível é obrigatória
                     </p>
                   </div>
@@ -63,8 +63,8 @@
                     <label for="tipo"><span class="fw-bold text-danger">*</span> Tipo</label>
                     <select class="form-select" [ngClass]="{'is-invalid': tipo.invalid && formDir.submitted, 'is-valid': tipo.valid}" formControlName="tipo" aria-label="Default select example">
                         <option disabled selected >Tipo de quadrinho</option>
-                        <option value="1">HQ</option>
-                        <option value="2">Mangá</option>
+                        <option value="HQ">HQ</option>
+                        <option value="Mangá">Mangá</option>
                       </select>
                 </div>
                 <div *ngIf="tipo.invalid && formDir.submitted" class="invalid-feedback" style="display: block;">
@@ -100,3 +100,10 @@
        </div>
     </div>
 </section>
+
+<div class="alert alert-success d-none fixed-bottom text-center" role="alert" id="true">
+  <p class="mb-0"><strong>{{fraseAlert}}</strong></p>
+</div>
+<div class="alert alert-success d-none fixed-bottom text-center" role="alert" id="false">
+  <p class="mb-0"><strong>{{fraseAlert}}</strong></p>
+</div>
