@@ -37,6 +37,9 @@
   color: white !important;
 }
 
+a{
+  text-decoration: none;
+}
 .text-danger{
   color: #ac0000 !important;
 }

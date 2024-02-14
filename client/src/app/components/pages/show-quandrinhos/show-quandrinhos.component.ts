@@ -24,21 +24,23 @@ export class ShowQuandrinhosComponent implements OnInit{
   }
 
   deleteQuadrinho(quadrinho_id: number){
-    this.quadrinho.deleteQuadrinho({quadrinho_id: quadrinho_id}).subscribe((response: Quadrinho) => {
-      if(response.ok){
-        this.fraseAlert = 'Quadrinho removido com sucesso'!;
-          const alert = document.getElementById('true');
-          alert!.classList.remove('d-none');
-          setTimeout(() => {
-            alert!.classList.add('d-none')}, 4000);
-      }else{
-        this.fraseAlert = response.message;
-        const alert = document.getElementById('false');
-        alert!.classList.remove('d-none');
-        setTimeout(() => {
-          alert!.classList.add('d-none')}, 4000);
-      }
-    })
+    console.log('buceta');
+    
+    // this.quadrinho.deleteQuadrinho({quadrinho_id: quadrinho_id}).subscribe((response: Quadrinho) => {
+    //   if(response.ok){
+    //     this.fraseAlert = 'Quadrinho removido com sucesso'!;
+    //       const alert = document.getElementById('true');
+    //       alert!.classList.remove('d-none');
+    //       setTimeout(() => {
+    //         alert!.classList.add('d-none')}, 4000);
+    //   }else{
+    //     this.fraseAlert = response.message;
+    //     const alert = document.getElementById('false');
+    //     alert!.classList.remove('d-none');
+    //     setTimeout(() => {
+    //       alert!.classList.add('d-none')}, 4000);
+    //   }
+    // })
   }
 
   get Router(){

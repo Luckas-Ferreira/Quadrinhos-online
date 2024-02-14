@@ -15,6 +15,7 @@ export interface Quadrinho {
         tipo: number;
         valor: number;
         nome: string;
+        descricao: string;
         foto: string;
         quadrinho_id: number;
     };
