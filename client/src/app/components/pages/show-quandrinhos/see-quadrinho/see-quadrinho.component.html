@@ -10,8 +10,8 @@
                            <div *ngIf="Router === '/ver/quadrinho/' + dataQuadrinho.quadrinho_id" class="col-12 d-none d-sm-block text-center mt-4">
                                 <button style="width: 85%" class="btn btn-danger">Alugar</button>
                            </div>
-                           <div *ngIf="Router === '/admin/quadrinho/ver/' + dataQuadrinho.quadrinho_id" class="col-12 d-none d-sm-block text-center mt-4">
-                                <button style="width: 85%" class="btn btn-danger">Apagar</button>
+                           <div style="cursor:help !important; " *ngIf="Router === '/admin/quadrinho/ver/' + dataQuadrinho.quadrinho_id" class="col-12 d-none d-sm-block text-center mt-4">
+                                <button (click)="openModal(dataQuadrinho.quadrinho_id, delete)" style="width: 85%" class="btn btn-danger">Apagar</button>
                            </div>
                     </div>
                 </div>
@@ -51,10 +51,29 @@
     </div>
 </section>
 
-<!-- 
+
 <div class="alert alert-success d-none fixed-bottom text-center" role="alert" id="true">
     <p class="mb-0"><strong>{{fraseAlert}}</strong></p>
   </div>
   <div class="alert alert-success d-none fixed-bottom text-center" role="alert" id="false">
     <p class="mb-0"><strong>{{fraseAlert}}</strong></p>
-  </div> -->
+  </div>
+
+
+    
+<!-- Modal -->
+<ng-template #delete>
+    <div class="ms-4 text-white">
+    <div class="modal-header">
+      <h2 class="modal-title">Apagar Quadrinho</h2>
+    </div>
+    <div class="modal-body pt-0">
+      Deseja remover este quadrinho?
+    </div>
+    <div class="modal-footer justify-content-end">
+      <button type="button" class="btn btn-primary me-3" style="min-width: 20%;" (click)="modalRef.hide()">Fechar</button>
+      <button type="button" id="remover" class="btn btn-danger" style="min-width: 20%;" (click)="deleteQuadrinho()" data-bs-dismiss="modal">SIM</button>
+    </div>
+  </div>
+  </ng-template>
+    

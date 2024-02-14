@@ -43,6 +43,15 @@ a{
 .text-danger{
   color: #ac0000 !important;
 }
+
+.modal {
+  --bs-modal-border-radius: 15px;
+  --bs-modal-border-color: none;
+  --bs-modal-header-border-color: transparent;
+  --bs-modal-footer-border-color: transparent;
+  --bs-body-bg: #212529;
+}
+
 .btn.btn-danger{
   --bs-btn-color: #fff;
   --bs-btn-bg: #ac0000;

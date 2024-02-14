@@ -23,19 +23,19 @@
                                 <span>R${{quadrinho.valor}}</span>
                             </div>
                             <div>
-                                <img src="{{baseUrl + quadrinho.foto}}" alt="manga" class="img-fluid">
+                              <img src="{{baseUrl + quadrinho.foto}}" alt="manga" class="img-fluid">
                             </div>
                         </a>
                     </div>   
                     <div class="d-flex align-item-center justify-content-between text-white rounded-bottom" style="background-color: #111;">
                         <p class="m-1 ps-2">{{quadrinho.nome}}</p>
                         <div *ngIf="Router === '/admin/quadrinhos'">
-                            <a (click)="deleteQuadrinho(quadrinho.quadrinho_id)">
+                            <a (click)="openModal(quadrinho.quadrinho_id, delete)">
                                 <i class="fa-solid fa-trash pe-2 m-1 mt-2" style="color: #ee1f1f"></i>
                             </a>
                         </div>
                         <div *ngIf="Router === '/inicio'">
-                            <button style="background-color: transparent; border: none;" (click)="deleteQuadrinho(quadrinho.quadrinho_id)">
+                            <button style="background-color: transparent; border: none;">
                                 <i class="fa-solid fa-plus pe-2 m-1 mt-2"  style="color: #18ff3e"></i>
                             </button>
                         </div>
@@ -57,3 +57,21 @@
   <div class="alert alert-success d-none fixed-bottom text-center" role="alert" id="false">
     <p class="mb-0"><strong>{{fraseAlert}}</strong></p>
   </div>
+
+
+  <!-- Modal -->
+<ng-template #delete>
+    <div class="ms-4 text-white">
+    <div class="modal-header">
+      <h2 class="modal-title">Apagar Quadrinho</h2>
+    </div>
+    <div class="modal-body pt-0">
+      Deseja remover este quadrinho?
+    </div>
+    <div class="modal-footer justify-content-end">
+      <button type="button" class="btn btn-primary me-3" style="min-width: 20%;" (click)="modalRef.hide()">Fechar</button>
+      <button type="button" id="remover" class="btn btn-danger" style="min-width: 20%;" (click)="deleteQuadrinho()" data-bs-dismiss="modal">SIM</button>
+    </div>
+  </div>
+  </ng-template>
+    
