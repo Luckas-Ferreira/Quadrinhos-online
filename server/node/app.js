@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const moneyRoutes = require('./money');
 const quadrinhoRoutes = require('./quadrinho');
+const alugarRouters = require('./alugar');
 const cors = require('cors');
 const multer = require('multer');
 const app = express();
@@ -29,6 +30,8 @@ app.post('/createQuadrinho', upload.single('foto'), quadrinhoRoutes.createQuadri
 app.get('/getQuadrinhos', quadrinhoRoutes.getQuadrinhos);
 app.post('/getQuadrinho', quadrinhoRoutes.getQuadrinho);
 app.post('/deleteQuadrinho', quadrinhoRoutes.deleteQuadrinho);
+app.post('/alugar', alugarRouters.alugarQuadrinho);
+app.get('/getAlugados', alugarRouters.getAlugados);
 
 app.listen(port, (err) => {
     if (err) throw err;

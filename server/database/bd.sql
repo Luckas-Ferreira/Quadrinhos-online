@@ -10,18 +10,20 @@ CREATE TABLE quadrinho(
     PRIMARY KEY (quadrinho_id)
 );
 
-CREATE TABLE alugar_quadrinho(
-    alugar_id INT AUTO_INCREMENT,
-    quantSelect INT,
-    quadrinho_id INT,
-    usuario_id INT,
-    PRIMARY KEY (alugar_id)
-);
-
 CREATE TABLE usuario(
     usuario_id INT AUTO_INCREMENT,
     valor INT,
     nome VARCHAR(50),
     senha VARCHAR(11),
     PRIMARY KEY (usuario_id)
+);
+
+CREATE TABLE alugados(
+    alugado_id INT AUTO_INCREMENT PRIMARY KEY,
+    usuario_id INT,
+    quadrinho_id INT,
+    data_aluguel DATE,
+    data_devolucao DATE,
+    FOREIGN KEY (usuario_id) REFERENCES usuario(usuario_id),
+    FOREIGN KEY (quadrinho_id) REFERENCES quadrinho(quadrinho_id)
 );
