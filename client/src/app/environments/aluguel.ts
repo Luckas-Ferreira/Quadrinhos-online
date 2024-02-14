@@ -1,5 +1,6 @@
+import {Base} from "../environments/baseUrl" 
 export const Aluguel = {
-    getAlugar: 'localhost:10/getAlugar',
-    alugar: 'localhost:10/alugar',
+    getAlugar: Base.url + 'getAlugados',
+    alugar: Base.url + 'alugar',
     limparAlugados: 'localhost:10/limparAlugados',
 }
