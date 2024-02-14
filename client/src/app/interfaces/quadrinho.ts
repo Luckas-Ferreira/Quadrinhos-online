@@ -8,5 +8,15 @@ export interface Quadrinho {
     nome: string;
     foto: string;
     quadrinho_id: number;
-    quadrinhos: []
+    quadrinhos: [];
+    quadrinho: {
+        quantDispo: number;
+        quantPaginas: number
+        tipo: number;
+        valor: number;
+        nome: string;
+        descricao: string;
+        foto: string;
+        quadrinho_id: number;
+    };
 }

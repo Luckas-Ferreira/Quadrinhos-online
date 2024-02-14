@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Quadrinho } from 'src/app/interfaces/quadrinho';
 import { QuadrinhoService } from 'src/app/services/quadrinho.service';
 import { Base } from 'src/app/environments/baseUrl';
 import { Router } from '@angular/router';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-show-quandrinhos',
@@ -11,9 +12,14 @@ import { Router } from '@angular/router';
 })
 export class ShowQuandrinhosComponent implements OnInit{
   baseUrl = Base.url;
+  modalRef!: BsModalRef;
+  quadrinho_id: number = 0;
   fraseAlert: string = '';
+  config2 = {
+    class: 'modal-dialog-centered'
+  }
   dataQuadrinho!: Quadrinho[];
-  constructor(private quadrinho: QuadrinhoService, private router: Router){}
+  constructor(private quadrinho: QuadrinhoService, private router: Router,private modalService: BsModalService){}
 
   ngOnInit(): void {
     this.quadrinho.getQuadrinhos().subscribe((response: Quadrinho) => {
@@ -23,22 +29,30 @@ export class ShowQuandrinhosComponent implements OnInit{
     })
   }
 
-  deleteQuadrinho(quadrinho_id: number){
-    this.quadrinho.deleteQuadrinho({quadrinho_id: quadrinho_id}).subscribe((response: Quadrinho) => {
-      if(response.ok){
-        this.fraseAlert = 'Quadrinho removido com sucesso'!;
-          const alert = document.getElementById('true');
-          alert!.classList.remove('d-none');
-          setTimeout(() => {
-            alert!.classList.add('d-none')}, 4000);
-      }else{
-        this.fraseAlert = response.message;
-        const alert = document.getElementById('false');
-        alert!.classList.remove('d-none');
-        setTimeout(() => {
-          alert!.classList.add('d-none')}, 4000);
-      }
-    })
+  openModal(quadrinho_id: any, template: TemplateRef<any>){  
+    this.modalRef = this.modalService.show(template, this.config2)
+    this.quadrinho_id = quadrinho_id
+   }
+   
+   
+  deleteQuadrinho(){
+  this.quadrinho.deleteQuadrinho({quadrinho_id: this.quadrinho_id}).subscribe((response: Quadrinho) => {
+    if(response.ok){
+    this.fraseAlert = 'Quadrinho removido com sucesso'!;
+       const alert = document.getElementById('true');
+       this.ngOnInit();
+       alert!.classList.remove('d-none');
+      setTimeout(() => {
+         alert!.classList.add('d-none')}, 4000);
+   }else{
+     this.fraseAlert = response.message;
+    const alert = document.getElementById('false');
+    alert!.classList.remove('d-none');
+     setTimeout(() => {
+      alert!.classList.add('d-none')}, 4000);
+   }
+    this.modalRef.hide();
+  })
   }
 
   get Router(){
