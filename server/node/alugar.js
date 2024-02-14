@@ -24,7 +24,6 @@ function alugarQuadrinho(req, res){
             open.query(sql, values, (err) => {
                 
                 if(err){
-                    console.log(err);
                     res.send({ok: false, message: 'Falha ao alugar quadrinho'})
                 }else{
                     res.send({ok: true})
