@@ -4,6 +4,8 @@ import { QuadrinhoService } from 'src/app/services/quadrinho.service';
 import { Base } from 'src/app/environments/baseUrl';
 import { Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { DataSharingService } from 'src/app/services/data-sharing.service';
+import { Alugar } from 'src/app/interfaces/alugar';
 
 @Component({
   selector: 'app-show-quandrinhos',
@@ -14,12 +16,13 @@ export class ShowQuandrinhosComponent implements OnInit{
   baseUrl = Base.url;
   modalRef!: BsModalRef;
   quadrinho_id: number = 0;
+  selectQuadrinho: any[] = [];
   fraseAlert: string = '';
   config2 = {
     class: 'modal-dialog-centered'
   }
   dataQuadrinho!: Quadrinho[];
-  constructor(private quadrinho: QuadrinhoService, private router: Router,private modalService: BsModalService){}
+  constructor(private shared: DataSharingService, private quadrinho: QuadrinhoService, private router: Router,private modalService: BsModalService){}
 
   ngOnInit(): void {
     this.quadrinho.getQuadrinhos().subscribe((response: Quadrinho) => {
@@ -55,6 +58,18 @@ export class ShowQuandrinhosComponent implements OnInit{
   })
   }
 
+  alugar(quadrinho_id: Quadrinho){
+    if(!this.selectQuadrinho.includes(quadrinho_id)){
+      this.selectQuadrinho.push(quadrinho_id)
+      this.shared.changeQuadrinhos(this.selectQuadrinho);
+    }else{
+      this.fraseAlert = "Quadrinho já adicinado ao carrinho";
+      const alert = document.getElementById('false');
+      alert!.classList.remove('d-none');
+        setTimeout(() => {
+        alert!.classList.add('d-none')}, 4000);
+    }
+  }
   get Router(){
     return this.router.url;
   }

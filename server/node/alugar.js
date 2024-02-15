@@ -15,10 +15,12 @@ app.use(bodyParser.json());
 
 
 function alugarQuadrinho(req, res){
+    console.log(req.body.quadrinho_id);
+    //ta vindo uma lista, precisa tratar como lista essa buceta
     const isExist = 'SELECT quadrinho_id FROM alugados;'
     open.query(isExist, (err, result) => {
         if(err) throw err;
-        if(result[0].quadrinho_id != req.body.quadrinho_id){
+        if(result.length > 0 && result[0].quadrinho_id != req.body.quadrinho_id){
             const sql = 'INSERT INTO alugados (usuario_id, quadrinho_id, data_aluguel) VALUES (?, ?, CURRENT_DATE);'
             const values = [5, req.body.quadrinho_id]
             open.query(sql, values, (err) => {
@@ -26,15 +28,24 @@ function alugarQuadrinho(req, res){
                 if(err){
                     res.send({ok: false, message: 'Falha ao alugar quadrinho'})
                 }else{
-                    res.send({ok: true})
+                    res.send({ok: true, message: 'Quadrinhos alugados com sucesso'})
+                }
+            })
+        }else if(result.length == 0){
+            const sql = 'INSERT INTO alugados (usuario_id, quadrinho_id, data_aluguel) VALUES (?, ?, CURRENT_DATE);'
+            const values = [5, req.body.quadrinho_id]
+            open.query(sql, values, (err) => {
+                
+                if(err){
+                    res.send({ok: false, message: 'Falha ao alugar quadrinho'})
+                }else{
+                    res.send({ok: true, message: 'Quadrinhos alugados com sucesso'})
                 }
             })
         }else{
             res.send({ok: false, message: 'Você já alugou esse quadrinho'})
         }
     })
-    
-    
 }
 
 function getAlugados(req, res){
