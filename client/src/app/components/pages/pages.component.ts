@@ -51,27 +51,32 @@ export class PagesComponent implements OnInit{
       let alugados = {
         quadrinhos: alugar 
       }
-      console.log(saldoTotal);
-      console.log(alugados.quadrinhos);
+      if(this.dataMoney > saldoTotal){
+        saldoTotal =  this.dataMoney - saldoTotal
+        this.Alugar.alugar({quadrinhos: alugados.quadrinhos, valor: saldoTotal}).subscribe((response: Alugar) => {
+          if(response.ok){
+            this.fraseAlert = response.message
+            const alert = document.getElementById('True');
+            alert!.classList.remove('d-none');
+            setTimeout(() => {
+              alert!.classList.add('d-none');
+            }, 4000);
+          }else{
+            this.fraseAlert = response.message
+            const alert = document.getElementById('False');
+            alert!.classList.remove('d-none');
+            setTimeout(() => {
+              alert!.classList.add('d-none');
+            }, 4000);
+          }
+        })
+      }this.fraseAlert = 'Saldo insuficiente'
+        const alert = document.getElementById('False');
+        alert!.classList.remove('d-none');
+        setTimeout(() => {
+          alert!.classList.add('d-none');
+        }, 4000);
       
-      
-      this.Alugar.alugar({quadrinhos: alugados.quadrinhos}).subscribe((response: Alugar) => {
-        if(response.ok){
-          this.fraseAlert = response.message
-          const alert = document.getElementById('True');
-          alert!.classList.remove('d-none');
-          setTimeout(() => {
-            alert!.classList.add('d-none');
-          }, 4000);
-        }else{
-          this.fraseAlert = response.message
-          const alert = document.getElementById('False');
-          alert!.classList.remove('d-none');
-          setTimeout(() => {
-            alert!.classList.add('d-none');
-          }, 4000);
-        }
-      })
     }
     
   }

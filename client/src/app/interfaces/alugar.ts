@@ -5,6 +5,7 @@ export interface Alugar {
     nome: string;
     valor: number;
     tipo: string;
+    alugado: boolean;
     message: string;
     data_aluguel: string;
     quadrinho_id: number

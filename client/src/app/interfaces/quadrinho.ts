@@ -7,6 +7,7 @@ export interface Quadrinho {
     valor: number;
     nome: string;
     foto: string;
+    alugado: boolean;
     quadrinho_id: number;
     quadrinhos: [];
     quadrinho: {

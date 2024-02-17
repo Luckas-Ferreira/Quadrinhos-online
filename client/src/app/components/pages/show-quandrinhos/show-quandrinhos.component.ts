@@ -28,6 +28,9 @@ export class ShowQuandrinhosComponent implements OnInit{
     this.quadrinho.getQuadrinhos().subscribe((response: Quadrinho) => {
       if(response.ok){
         this.dataQuadrinho = response.quadrinhos
+        this.dataQuadrinho.forEach(quadrinho => {
+          quadrinho.alugado = false;
+        });
       }
     })
   }
@@ -58,10 +61,11 @@ export class ShowQuandrinhosComponent implements OnInit{
   })
   }
 
-  alugar(quadrinho_id: Quadrinho){
-    if(!this.selectQuadrinho.includes(quadrinho_id)){
-      this.selectQuadrinho.push(quadrinho_id)
+  alugar(quadrinho: Quadrinho){
+    if(!this.selectQuadrinho.includes(quadrinho)){
+      this.selectQuadrinho.push(quadrinho)
       this.shared.changeQuadrinhos(this.selectQuadrinho);
+      quadrinho.alugado = true;
     }else{
       this.fraseAlert = "Quadrinho já adicinado ao carrinho";
       const alert = document.getElementById('false');

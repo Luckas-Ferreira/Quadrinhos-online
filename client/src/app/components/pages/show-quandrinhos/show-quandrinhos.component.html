@@ -36,7 +36,11 @@
                         </div>
                         <div *ngIf="Router === '/inicio'">
                             <button (click)="alugar(quadrinho)" style="background-color: transparent; border: none;">
-                                <i class="fa-solid fa-plus pe-2 m-1 mt-2"  style="color: #18ff3e"></i>
+                                <i *ngIf="!quadrinho.alugado; else isAlugado" class="fa-solid fa-plus pe-2 m-1 mt-2"  style="color: #18ff3e"></i>
+                                <ng-template #isAlugado>
+                                    <i class="fa-solid fa-check pe-2 m-1 mt-2"  style="color: #18ff3e"></i>                           
+                                </ng-template>
+                               
                             </button>
                         </div>
                     </div>
