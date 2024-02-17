@@ -15,7 +15,7 @@ export class RentQHService {
   constructor(private http: HttpClient) { }
 
   getAlugar(): Observable<Alugar>{
-    return this.http.post<Alugar>(this.GetAlugar, [])
+    return this.http.get<Alugar>(this.GetAlugar)
   }
   alugar(object: object): Observable<Alugar>{
     return this.http.post<Alugar>(this.Alugar, object)

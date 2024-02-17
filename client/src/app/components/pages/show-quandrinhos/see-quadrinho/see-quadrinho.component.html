@@ -8,7 +8,7 @@
                                 <img width="240" src="{{baseUrl + dataQuadrinho.foto}}" alt="manga" class="img-fluid rounded">
                            </div>
                            <div *ngIf="Router === '/ver/quadrinho/' + dataQuadrinho.quadrinho_id" class="col-12 d-none d-sm-block text-center mt-4">
-                                <button style="width: 85%" class="btn btn-danger">Alugar</button>
+                                <button (click)="alugar(Quadrinho)" style="width: 85%" class="btn btn-danger">Alugar</button>
                            </div>
                            <div style="cursor:help !important; " *ngIf="Router === '/admin/quadrinho/ver/' + dataQuadrinho.quadrinho_id" class="col-12 d-none d-sm-block text-center mt-4">
                                 <button (click)="openModal(dataQuadrinho.quadrinho_id, delete)" style="width: 85%" class="btn btn-danger">Apagar</button>
@@ -38,7 +38,7 @@
                             </p>
                         </div>
                         <div class="col-12 d-block d-sm-none text-center mt-4">
-                            <button style="width: 85%" class="btn btn-danger">Alugar</button>
+                            <button (click)="alugar(Quadrinho)" style="width: 85%" class="btn btn-danger">Alugar</button>
                            </div>
                     </div>
                 </div>
