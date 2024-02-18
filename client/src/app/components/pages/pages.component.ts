@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Alugar } from 'src/app/interfaces/alugar';
 import { Money } from 'src/app/interfaces/money';
-import { Quadrinho } from 'src/app/interfaces/quadrinho';
 import { DataSharingService } from 'src/app/services/data-sharing.service';
 import { MoneyService } from 'src/app/services/money.service';
 import { RentQHService } from 'src/app/services/rent-qh.service';
