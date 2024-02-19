@@ -5,7 +5,6 @@ import { Base } from 'src/app/environments/baseUrl';
 import { Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { DataSharingService } from 'src/app/services/data-sharing.service';
-import { Alugar } from 'src/app/interfaces/alugar';
 
 @Component({
   selector: 'app-show-quandrinhos',
