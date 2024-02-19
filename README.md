@@ -60,6 +60,57 @@ O cliente será desenvolvido usando Angular, que é um framework de frontend que
   <img alt="demonstração" title="#NextLevelWeek" src="img/Arquitetura.png" />
 </h1>
 
+# Documentação do Banco de Dados
+## Tabela: quadrinho
+Esta tabela armazena informações sobre os quadrinhos disponíveis para aluguel.
+
+| Campo         | Tipo          | Descrição                                      |
+|---------------|---------------|------------------------------------------------|
+| quadrinho_id  | INT           | Identificador único do quadrinho.              |
+| nome          | VARCHAR(50)   | Nome do quadrinho.                             |
+| valor         | INT           | Valor do aluguel do quadrinho.                 |
+| quantDispo    | INT           | Quantidade disponível para aluguel.            |
+| descricao     | VARCHAR(255)  | Descrição do quadrinho.                        |
+| tipo          | VARCHAR(20)   | Tipo do quadrinho (ex: mangá, HQ americana).   |
+| quantPaginas  | INT           | Número de páginas do quadrinho.                |
+| foto          | VARCHAR(255)  | Caminho para a imagem de capa do quadrinho.    |
+
+## Tabela: usuario
+Esta tabela contém informações sobre os usuários que podem alugar quadrinhos.
+
+| Campo       | Tipo          | Descrição                          |
+|-------------|---------------|------------------------------------|
+| usuario_id  | INT           | Identificador único do usuário.    |
+| valor       | INT           | Saldo disponível para o usuário.   |
+| nome        | VARCHAR(50)   | Nome do usuário.                   |
+| senha       | VARCHAR(11)   | Senha de acesso do usuário.        |
+
+## Tabela: alugados
+Registra os detalhes dos aluguéis de quadrinhos pelos usuários.
+
+| Campo          | Tipo          | Descrição                                      |
+|----------------|---------------|------------------------------------------------|
+| alugado_id     | INT           | Identificador único do aluguel.                |
+| usuario_id     | INT           | Identificador do usuário que alugou o quadrinho. |
+| quadrinho_id   | INT           | Identificador do quadrinho alugado.            |
+| data_aluguel   | DATE          | Data em que o quadrinho foi alugado.           |
+| data_devolucao | DATE          | Data prevista para devolução do quadrinho.     |
+
+### Relacionamentos
+- A tabela `alugados` tem uma chave estrangeira `usuario_id` que referencia a tabela `usuario`.
+- A tabela `alugados` também tem uma chave estrangeira `quadrinho_id` que referencia a tabela `quadrinho`.
+
+### Regras de Negócio
+- Um `usuario` pode ter vários `alugados`, mas cada `alugado` está associado a apenas um `usuario`.
+- Um `quadrinho` pode ser alugado várias vezes (em diferentes registros de `alugados`), mas cada `alugado` está associado a apenas um `quadrinho`.
+- O `valor` na tabela `usuario` deve ser suficiente para cobrir o `valor` do aluguel do `quadrinho` na tabela `alugados`.
+
+### Índices
+- Índices primários foram criados para `quadrinho_id`, `usuario_id` e `alugado_id` para otimizar buscas e relações.
+
+### Restrições
+- Todos os campos são obrigatórios.
+
 ### Diagrama UML
 <h1 align="center">
   <img alt="demonstração" title="#NextLevelWeek" src="img/Diagrama_UML.png" />
