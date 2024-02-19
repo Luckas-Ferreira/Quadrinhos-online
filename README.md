@@ -52,15 +52,68 @@ Os requisitos não funcionais do sistema são:
 
 ## Arquitetura
 
-A arquitetura do sistema é baseada no padrão MVC (Model-View-Controller), que divide o sistema em três camadas: apresentação, lógica e persistência de dados.
+A arquitetura de Cliente e Servidor é baseada na comunicação entre dois processos: o cliente, que solicita os serviços, e o servidor, que fornece os serviços. Nessa arquitetura, o cliente é responsável pela interface gráfica, e o servidor é responsável pela lógica e pela persistência de dados.
 
-### Camada de Apresentação
+O cliente será desenvolvido usando Angular, que é um framework de frontend que facilita a criação de aplicações web dinâmicas e responsivas. O servidor será desenvolvido usando Node.js, que é uma plataforma de execução de código JavaScript no lado do servidor, que permite uma comunicação rápida e eficiente com o banco de dados. O banco de dados será desenvolvido usando MySQL, que é um sistema de gerenciamento de banco de dados de código aberto, que oferece um alto desempenho, uma boa segurança e uma fácil administração.
 
-A camada de apresentação é responsável por interagir com o usuário, exibindo as informações e recebendo as entradas. Ela é composta por duas interfaces gráficas: uma para o usuário e outra para o administrador. As interfaces são desenvolvidas usando Angular, um framework de frontend que facilita a criação de aplicações web dinâmicas e responsivas.
+<h1 align="center">
+  <img alt="demonstração" title="#NextLevelWeek" src="img/Arquitetura.png" />
+</h1>
+
+# Documentação do Banco de Dados
+## Tabela: quadrinho
+Esta tabela armazena informações sobre os quadrinhos disponíveis para aluguel.
+
+| Campo         | Tipo          | Descrição                                      |
+|---------------|---------------|------------------------------------------------|
+| quadrinho_id  | INT           | Identificador único do quadrinho.              |
+| nome          | VARCHAR(50)   | Nome do quadrinho.                             |
+| valor         | INT           | Valor do aluguel do quadrinho.                 |
+| quantDispo    | INT           | Quantidade disponível para aluguel.            |
+| descricao     | VARCHAR(255)  | Descrição do quadrinho.                        |
+| tipo          | VARCHAR(20)   | Tipo do quadrinho (ex: mangá, HQ americana).   |
+| quantPaginas  | INT           | Número de páginas do quadrinho.                |
+| foto          | VARCHAR(255)  | Caminho para a imagem de capa do quadrinho.    |
+
+## Tabela: usuario
+Esta tabela contém informações sobre os usuários que podem alugar quadrinhos.
+
+| Campo       | Tipo          | Descrição                          |
+|-------------|---------------|------------------------------------|
+| usuario_id  | INT           | Identificador único do usuário.    |
+| valor       | INT           | Saldo disponível para o usuário.   |
+| nome        | VARCHAR(50)   | Nome do usuário.                   |
+| senha       | VARCHAR(11)   | Senha de acesso do usuário.        |
+
+## Tabela: alugados
+Registra os detalhes dos aluguéis de quadrinhos pelos usuários.
+
+| Campo          | Tipo          | Descrição                                      |
+|----------------|---------------|------------------------------------------------|
+| alugado_id     | INT           | Identificador único do aluguel.                |
+| usuario_id     | INT           | Identificador do usuário que alugou o quadrinho. |
+| quadrinho_id   | INT           | Identificador do quadrinho alugado.            |
+| data_aluguel   | DATE          | Data em que o quadrinho foi alugado.           |
+| data_devolucao | DATE          | Data prevista para devolução do quadrinho.     |
+
+### Relacionamentos
+- A tabela `alugados` tem uma chave estrangeira `usuario_id` que referencia a tabela `usuario`.
+- A tabela `alugados` também tem uma chave estrangeira `quadrinho_id` que referencia a tabela `quadrinho`.
+
+### Regras de Negócio
+- Um `usuario` pode ter vários `alugados`, mas cada `alugado` está associado a apenas um `usuario`.
+- Um `quadrinho` pode ser alugado várias vezes (em diferentes registros de `alugados`), mas cada `alugado` está associado a apenas um `quadrinho`.
+- O `valor` na tabela `usuario` deve ser suficiente para cobrir o `valor` do aluguel do `quadrinho` na tabela `alugados`.
+
+### Índices
+- Índices primários foram criados para `quadrinho_id`, `usuario_id` e `alugado_id` para otimizar buscas e relações.
+
+### Restrições
+- Todos os campos são obrigatórios.
 
 ### Diagrama UML
 <h1 align="center">
-  <img alt="demonstração" title="#NextLevelWeek" src="/img-demo/DiagramaUML.png" />
+  <img alt="demonstração" title="#NextLevelWeek" src="img/Diagrama_UML.png" />
 </h1>
 
 ### Camada de Lógica
