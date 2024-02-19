@@ -1,0 +1,23 @@
+<section class="container-fluid mt-5 background">
+    <div class="m-2 m-sm-5">
+        <div class="bg-dark p-2 rounded"> 
+        <div *ngIf="dataAlugado && dataAlugado.length > 0; else noAlugado" class="row gy-5 text-white">
+            <div *ngFor="let alugado of dataAlugado" class="col-6 col-sm-3 col-xl-2">
+                <div class="d-flex align-item-center justify-content-center text-white rounded-top" style="padding: 6px 12px; background-color: #111;">
+                    <span class="text-info">{{formatDate(alugado.data_aluguel)}}</span>
+                </div>
+                <div>
+                    <img src="{{baseUrl + alugado.foto}}" alt="manga" class="img-fluid">
+                </div>
+                <div class="d-flex align-item-center justify-content-between text-white" style="background-color: #111;">
+                    <p class="m-1 ps-2">{{alugado.nome}}</p>
+                    <p class="m-1 pe-2">R${{alugado.valor}}</p>
+                </div>
+            </div>
+        </div>
+        <ng-template #noAlugado>
+            <h3 class="text-white text-center mt-2">Nenhum quadrinho alugado</h3>
+        </ng-template>
+        </div>
+    </div>
+</section>

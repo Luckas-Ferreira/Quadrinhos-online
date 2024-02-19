@@ -1,0 +1,22 @@
+<section class="container d-flex align-items-center justify-content-center vh-100">
+    <form class="needs-validation" novalidate id="bookingForm" (ngSubmit)="depositar()" #formDir="ngForm" [formGroup]="formDeposito" enctype="multipart/form-data">
+        <div class="card bg-dark">
+            <div class="card-body text-white">
+                <div class="p-3 form-group">
+                    <h1 class="text-center">Depositar</h1>
+                    <div class="mb-3 mt-5">
+                        <input type="number" [ngClass]="{'is-invalid': valor.invalid && formDir.submitted, 'is-valid': valor.valid}" formControlName="valor" class="form-control" id="exampleFormControlInput1" placeholder="Quantidade">
+                    </div>
+                    <div *ngIf="valor.invalid && formDir.submitted" class="invalid-feedback" style="display: block;">
+                        <p *ngIf="valor.errors?.['required']">
+                          O valor de deposito é obrigatório
+                        </p>
+                      </div>
+                    <div class="mt-5">
+                        <button type="submit"  class="btn btn-danger" style="width: 100%;">Adicionar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </form>
+</section>

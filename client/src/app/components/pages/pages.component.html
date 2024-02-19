@@ -1,0 +1,73 @@
+<header class="Header">
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid me-2">
+            <a href="/inicio">
+              <img src="\assets\Q-online.png" alt="logo" height="50">
+            </a>
+            <div class="d-flex align-items-center">
+       
+                <div class="dropdown ">
+                  <button style="background-color: transparent; border: none;" class="dropdown-toggle text-white" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fa-solid fa-cart-shopping text-warning"></i>
+                  </button>
+                  <div class="dropdown-menu dropdown-menu-end dropdown-menu-dark p-2">
+                    <div *ngIf="dataQuadrinho.length > 0; else noQuadrinho">
+                      <div *ngFor="let quadrinho of dataQuadrinho">
+                        <p>{{quadrinho.nome}} - R${{quadrinho.valor}}.00</p>
+                      </div>
+                    </div>
+                    <ng-template #noQuadrinho>
+                      <p class="text-center">Nada no carrinho</p>
+                    </ng-template>
+                    <hr class="mt-2 mb-2">
+                    <div>
+                      <p>Total: R${{total}}.00</p>
+                    </div>
+                    <hr class="mt-2 mb-2">
+                    <div class="d-grid gap-2 mt-2">
+                      <button (click)="alugar()" class="btn btn-danger">
+                        alugar
+                      </button>
+                    </div>
+                  </div>
+                </div>
+            
+              <div class="text-white pe-4 ps-4">
+                <p><strong>R${{dataMoney}}</strong></p>
+              </div>
+              <div class="dropdown ">
+                  <button style="background-color: transparent; border: none;" class="dropdown-toggle text-white" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class="fa-solid fa-user fa-xl"></i>
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark">
+                    <li><a (click)="sacarValor()" class="dropdown-item">Sacar valor</a></li>
+                  </ul>
+                </div>
+            </div>
+            
+        </div>
+      </nav>
+</header>
+<section>
+ <div class="text-center text-white mt-4">
+    <h3>Quadrinhos</h3>
+ </div>
+  <router-outlet></router-outlet>
+</section>
+
+<footer class="Footer" style=" background-color: #11111182;">
+  <div class="container">
+    <footer class="py-3">
+      <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+      </ul>
+      <p class="text-center text-muted">© 2024 Q-Online</p>
+    </footer>
+  </div>
+</footer>
+
+<div class="alert alert-success d-none fixed-bottom text-center" role="alert" id="True">
+  <p class="mb-0"><strong>{{fraseAlert}}</strong></p>
+</div>
+<div class="alert alert-danger d-none fixed-bottom text-center" role="alert" id="False">
+  <p class="mb-0"><strong>{{fraseAlert}}</strong></p>
+</div>

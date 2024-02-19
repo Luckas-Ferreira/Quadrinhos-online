@@ -1,0 +1,81 @@
+<section class="container-fluid mt-5 background">
+    <div class="m-2 m-sm-5">
+       <div class="bg-dark p-2 rounded"> 
+            <div *ngIf="dataQuadrinho && dataQuadrinho.length > 0; else noQuadrinhos" class="row gy-5">
+                <div *ngFor="let quadrinho of dataQuadrinho" class="col-6 col-sm-4 col-md-3 col-xl-2">
+                    <div *ngIf="Router === '/inicio'">
+                        <a [routerLink]="'/ver/quadrinho/' + quadrinho.quadrinho_id">
+                            <div class="d-flex align-item-center justify-content-between text-white rounded-top" style="padding: 6px 12px; background-color: #111;">
+                                <span class="pe-1 ps-1" style="background-color: #ac0000; border-radius: 5px;">{{quadrinho.tipo}}</span>
+                                <span><i class="fa-solid fa-star text-warning fa-sm pe-1"></i>5.0</span>
+                                <span>R${{quadrinho.valor}}</span>
+                            </div>
+                            <div>
+                                <img src="{{baseUrl + quadrinho.foto}}" alt="manga" class="img-fluid">
+                            </div>
+                        </a>
+                    </div>    
+                    <div *ngIf="Router === '/admin/quadrinhos'">
+                        <a [routerLink]="'/admin/quadrinho/ver/' + quadrinho.quadrinho_id">
+                            <div class="d-flex align-item-center justify-content-between text-white rounded-top" style="padding: 6px 12px; background-color: #111;">
+                                <span class="pe-1 ps-1" style="background-color: #ac0000; border-radius: 5px;">{{quadrinho.tipo}}</span>
+                                <span><i class="fa-solid fa-star text-warning fa-sm pe-1"></i>5.0</span>
+                                <span>R${{quadrinho.valor}}</span>
+                            </div>
+                            <div>
+                              <img src="{{baseUrl + quadrinho.foto}}" alt="manga" class="img-fluid">
+                            </div>
+                        </a>
+                    </div>   
+                    <div class="d-flex align-item-center justify-content-between text-white rounded-bottom" style="background-color: #111;">
+                        <p class="m-1 ps-2">{{quadrinho.nome}}</p>
+                        <div *ngIf="Router === '/admin/quadrinhos'">
+                            <a (click)="openModal(quadrinho.quadrinho_id, delete)">
+                                <i class="fa-solid fa-trash pe-2 m-1 mt-2" style="color: #ee1f1f"></i>
+                            </a>
+                        </div>
+                        <div *ngIf="Router === '/inicio'">
+                            <button (click)="alugar(quadrinho)" style="background-color: transparent; border: none;">
+                                <i *ngIf="!quadrinho.alugado; else isAlugado" class="fa-solid fa-plus pe-2 m-1 mt-2"  style="color: #18ff3e"></i>
+                                <ng-template #isAlugado>
+                                    <i class="fa-solid fa-check pe-2 m-1 mt-2"  style="color: #18ff3e"></i>                           
+                                </ng-template>
+                               
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <ng-template #noQuadrinhos>
+                <h3 class="text-white text-center mt-2">Nenhum quadrinho adicionado</h3>
+            </ng-template>
+        </div>
+        
+    </div>
+</section>
+
+
+<div class="alert alert-success d-none fixed-bottom text-center" role="alert" id="true">
+    <p class="mb-0"><strong>{{fraseAlert}}</strong></p>
+  </div>
+  <div class="alert alert-danger d-none fixed-bottom text-center" role="alert" id="false">
+    <p class="mb-0"><strong>{{fraseAlert}}</strong></p>
+  </div>
+
+
+  <!-- Modal -->
+<ng-template #delete>
+    <div class="ms-4 text-white">
+    <div class="modal-header">
+      <h2 class="modal-title">Apagar Quadrinho</h2>
+    </div>
+    <div class="modal-body pt-0">
+      Deseja remover este quadrinho?
+    </div>
+    <div class="modal-footer justify-content-end">
+      <button type="button" class="btn btn-primary me-3" style="min-width: 20%;" (click)="modalRef.hide()">Fechar</button>
+      <button type="button" id="remover" class="btn btn-danger" style="min-width: 20%;" (click)="deleteQuadrinho()" data-bs-dismiss="modal">SIM</button>
+    </div>
+  </div>
+  </ng-template>
+    

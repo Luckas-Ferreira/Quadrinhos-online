@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,400;6..12,600&family=Nunito:wght@400;500;600;800&display=swap');
+
+*{
+    font-family: 'Nunito';
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+  .Header {
+    height: 66px;
+  }
+  
+  .Footer {
+    height: 105px;
+  }
+  
+  .background{
+    background-color: #0a0a0a;
+    min-height: calc(100vh - 66px - 105px); 
+    }
+
+  p{
+    margin: 0;
+    padding: 0;
+  }
+    .alert.fixed-bottom {
+      position: fixed;
+      bottom: 0;
+      margin-bottom: 2vh;
+      width: 280px;
+      margin-left: auto;
+      z-index: 10000;
+    }
+
+.text-muted{
+  color: white !important;
+}
+
+a{
+  text-decoration: none;
+}
+.text-danger{
+  color: #ac0000 !important;
+}
+
+.modal {
+  --bs-modal-border-radius: 15px;
+  --bs-modal-border-color: none;
+  --bs-modal-header-border-color: transparent;
+  --bs-modal-footer-border-color: transparent;
+  --bs-body-bg: #212529;
+}
+
+.btn.btn-danger{
+  --bs-btn-color: #fff;
+  --bs-btn-bg: #ac0000;
+  --bs-btn-border-color: #ac0000;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-focus-shadow-rgb: 88, 145, 226;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #fff;
+  --bs-btn-disabled-bg: #ac0000;
+  --bs-btn-disabled-border-color: #ac0000;
+  --bs-btn-hover-bg: #790404;
+  --bs-btn-hover-border-color: #790404;
+  --bs-btn-active-bg: #790404;
+  --bs-btn-active-border-color: #790404;
+}
