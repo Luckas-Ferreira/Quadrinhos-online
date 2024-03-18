@@ -6,8 +6,8 @@ const app = express();
 const open = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    database: 'q_online', 
-    password: 'Sou1tera'
+    database: 'Q_online', 
+    password: '1234'
 });
 
 app.use(bodyParser.urlencoded({extended: false}));

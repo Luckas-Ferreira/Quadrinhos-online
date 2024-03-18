@@ -3,10 +3,10 @@ CREATE TABLE quadrinho(
     nome VARCHAR(50),
     valor INT,
     quantDispo INT,
-    descricao VARCHAR(255),
+    descricao VARCHAR(16382),
     tipo VARCHAR(20),
     quantPaginas INT,
-    foto VARCHAR(255),
+    foto VARCHAR(1055),
     PRIMARY KEY (quadrinho_id)
 );
 

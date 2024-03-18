@@ -6,8 +6,8 @@ const app = express();
 const open = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    database: 'q_online', 
-    password: 'Sou1tera'
+    database: 'Q_online', 
+    password: '1234'
 });
 
 app.use(bodyParser.urlencoded({extended: false}));
@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 
 function depositarValor(req, res) {
     if(req.body.valor !== 0){
-        const sql = `UPDATE usuario SET valor = ${req.body.valor} WHERE usuario_id = 5;`;
+        const sql = `UPDATE usuario SET valor = ${req.body.valor} WHERE usuario_id = 1;`;
         open.query(sql, (err) => {
             if (err) {
                 res.send({ok: false, message: 'Erro ao depositar'});
@@ -29,7 +29,7 @@ function depositarValor(req, res) {
 }
 
 function getValor(req, res) {
-    const sql = `SELECT * FROM usuario WHERE usuario_id = 5;`;
+    const sql = `SELECT * FROM usuario WHERE usuario_id = 1;`;
     open.query(sql, (err, result) => {
         if(result[0].valor !== 0){
             if (err) {
@@ -45,7 +45,7 @@ function getValor(req, res) {
 }
 
 function sacarValor(req, res) {
-    const sql = `UPDATE usuario SET valor = 0 WHERE usuario_id = 5`;
+    const sql = `UPDATE usuario SET valor = 0 WHERE usuario_id = 1`;
     open.query(sql, (err) => {
         if(err) {
             res.send({ok: false, message: 'Erro ao sacar'});
